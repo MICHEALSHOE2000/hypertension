@@ -1,0 +1,271 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #1a2e1a;
+  background-color: #f5fff6;
+}
+
+/* Utility Classes */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Sticky CTA Button */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #0d6d36;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  z-index: 999;
+}
+
+.sticky-cta button {
+  background: #fff;
+  color: #0d6d36;
+  font-weight: bold;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sticky-cta button:hover {
+  background: #c9f7ce;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(to right, #c9f7ce, #e9ffea);
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero button {
+  background: #0d6d36;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background: #0a5228;
+}
+
+/* Section Titles */
+section h2 {
+  color: #0d6d36;
+  margin-bottom: 1rem;
+}
+
+/* Story */
+.story p {
+  margin-bottom: 1rem;
+}
+
+/* Ingredients */
+.ingredients ul {
+  list-style-type: square;
+  padding-left: 1.5rem;
+}
+
+/* Testimonials */
+.testimonials {
+  background: #e9ffea;
+  padding: 3rem 0;
+}
+
+.testimonial {
+  margin-bottom: 1.5rem;
+  background: white;
+  padding: 1rem;
+  border-left: 5px solid #0d6d36;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial span {
+  display: block;
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Limited Offer Section */
+.limited-offer {
+  background: #c9f7ce;
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.limited-offer button {
+  margin-top: 1rem;
+  background: #0d6d36;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.limited-offer button:hover {
+  background: #0a5228;
+}
+
+/* Order Form */
+.form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-section input,
+.form-section textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-section button[type="submit"] {
+  background: #0d6d36;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.form-section button[type="submit"]:hover {
+  background: #0a5228;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background: #e9ffea;
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: #0d6d36;
+  text-decoration: underline;
+}
+.countdown {
+    font-size: 1.1rem;
+    color: #155e29;
+    background: #e6ffe6;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .faq-item {
+    margin-bottom: 1rem;
+  }
+  
+  .faq-question {
+    background: #def5e5;
+    color: #064e3b;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .faq-answer {
+    display: none;
+    padding: 10px;
+    background: #f6fff6;
+    border-left: 3px solid #25a244;
+    border-radius: 4px;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 50, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    background: #ffffff;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    max-width: 400px;
+  }
+  
+  #closeModal {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #198754;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+      
+/* Animations */
+.animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+/* Responsive Typography */
+@media (min-width: 768px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+  }
+}
