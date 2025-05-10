@@ -161,7 +161,6 @@ section h2 {
 
 .product-image img {
   width: 100%;
-  max-width: 300px;
   height: auto;
   border-radius: 1rem;
   box-shadow: 0 8px 24px rgba(0, 128, 0, 0.15);
