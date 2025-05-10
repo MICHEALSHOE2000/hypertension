@@ -60,15 +60,3 @@ document.querySelectorAll('.faq-question').forEach((btn) => {
       answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
     });
   });
-// ========= Exit-Intent Modal =========
-let modalShown = false;
-document.addEventListener('mouseleave', function (e) {
-  if (e.clientY < 0 && !modalShown) {
-    document.getElementById('exitModal').style.display = 'flex';
-    modalShown = true;
-  }
-});
-document.getElementById('closeModal')?.addEventListener('click', () => {
-  document.getElementById('exitModal').style.display = 'none';
-});
-  
