@@ -60,3 +60,74 @@ document.querySelectorAll('.faq-question').forEach((btn) => {
       answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
     });
   });
+
+  // === Testimonial Slider for Hypertension Cure ===
+  const testimonials = [
+    {
+      text: "“My blood pressure dropped from 160/100 to 120/80 within 3 weeks of using this product.”",
+      name: "Oluwabunmi, Port Harcourt"
+    },
+    {
+      text: "“I’ve stopped taking my regular BP meds since I started this. It’s been 5 months and I feel great!”",
+      name: "Danladi, Kaduna"
+    },
+    {
+      text: "“I didn’t think natural remedies could work this well. My doctor was surprised too.”",
+      name: "Ngozi, Owerri"
+    }
+  ];
+
+  let currentTestimonial = 0;
+  const testimonialSection = document.getElementById("testimonials");
+
+  function updateTestimonial() {
+    testimonialSection.innerHTML = `
+      <h2>What Others Are Saying</h2>
+      <blockquote>
+        <p>${testimonials[currentTestimonial].text}</p>
+        <cite>— ${testimonials[currentTestimonial].name}</cite>
+      </blockquote>
+    `;
+    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+  }
+
+  updateTestimonial();
+  setInterval(updateTestimonial, 10000); // Change every 10s
+
+  // === Fake Order Notification (Top-Right) ===
+  const fakeOrders = [
+    "Femi from Lagos just ordered the hypertension combo pack!",
+    "Aisha from Kano bought 2-month supply!",
+    "Chisom from Onitsha reordered after results!",
+    "Mrs. Ade from Abuja placed her second order!",
+    "Tunde from Ibadan just paid for express delivery!"
+  ];
+
+  const popup = document.getElementById('fake-order-popup');
+
+  function showFakeOrder() {
+    popup.textContent = fakeOrders[Math.floor(Math.random() * fakeOrders.length)];
+    popup.style.opacity = '1';
+    setTimeout(() => {
+      popup.style.opacity = '0';
+    }, 5000);
+  }
+
+  setInterval(showFakeOrder, 25000); // Every 25 seconds
+
+  // === Fake Comment Submit ===
+  const sendBtn = document.getElementById('send-comment');
+  const input = document.getElementById('comment-input');
+  const toast = document.getElementById('comment-toast');
+
+  if (sendBtn && input && toast) {
+    sendBtn.addEventListener('click', () => {
+      if (input.value.trim() !== '') {
+        toast.style.display = 'block';
+        input.value = '';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 3000);
+      }
+    });
+  }
