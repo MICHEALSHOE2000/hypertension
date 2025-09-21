@@ -305,7 +305,44 @@ section h2 {
     opacity: 1;
     transform: translateY(0);
   }
-  
+  /* Sticky WhatsApp Button */
+.sticky-whatsapp {
+  position: fixed;
+  bottom: 70px; /* keeps it above the existing sticky CTA */
+  right: 15px;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 1000;
+  animation: pulse 1.5s infinite;
+}
+
+.sticky-whatsapp img {
+  width: 24px;
+  height: 24px;
+}
+
+.sticky-whatsapp:hover {
+  background: #1ebe5d;
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+/* WhatsApp pulsing animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
 /* Responsive Typography */
 @media (min-width: 768px) {
   .hero h1 {
@@ -316,3 +353,4 @@ section h2 {
     font-size: 1.25rem;
   }
 }
+
