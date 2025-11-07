@@ -230,33 +230,7 @@ stateSelect.addEventListener('change', function() {
     lgaSelect.appendChild(defaultOption);
   }
   });
-  // Validation for phone numbers
-document.getElementById("orderForm").addEventListener("submit", async function(event) {
-  const phone = document.getElementById("phone").value.trim();
-  const altPhone = document.getElementById("alt-phone").value.trim();
-  const phoneRegex = /^\d{11}$/;
-
-  if (!phoneRegex.test(phone) || !phoneRegex.test(altPhone)) {
-    alert("Both phone numbers must be exactly 11 digits.");
-    event.preventDefault();
-    return false;
-  }
-
-  // Formspree submission
-  event.preventDefault();
-  let response = await fetch(this.action, {
-    method: this.method,
-    body: new FormData(this),
-    headers: { 'Accept': 'application/json' }
-  });
-
-  if (response.ok) {
-    window.location.href = "https://fibroidtreatment.xyz/tubal";
-  } else {
-    alert("Something went wrong. Please try again.");
-  }
-});
-
+  
 </script>
 
 
@@ -366,6 +340,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
 </body>
 </html>
+
 
 
 
