@@ -229,6 +229,7 @@ stateSelect.addEventListener('change', function() {
     defaultOption.selected = true;
     lgaSelect.appendChild(defaultOption);
   }
+  });
   // Validation for phone numbers
 document.getElementById("orderForm").addEventListener("submit", async function(event) {
   const phone = document.getElementById("phone").value.trim();
@@ -255,7 +256,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     alert("Something went wrong. Please try again.");
   }
 });
-});
+
 </script>
 
 
@@ -365,6 +366,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
 </body>
 </html>
+
 
 
 
