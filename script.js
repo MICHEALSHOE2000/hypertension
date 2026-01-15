@@ -1,121 +1,89 @@
-// ========= Scroll-Based Animation =========
-// Add class 'visible' when an element enters the viewport
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  },
-  {
-    threshold: 0.1,
-  }
-);
-// ========= Countdown Timer =========
-function startCountdown(duration, display) {
-    let timer = duration, minutes, seconds;
-    setInterval(() => {
-      minutes = String(Math.floor(timer / 60)).padStart(2, '0');
-      seconds = String(timer % 60).padStart(2, '0');
-      display.textContent = `00:${minutes}:${seconds}`;
-      if (--timer < 0) timer = 0;
-    }, 1000);
-  }
-  
-  const countdownDisplay = document.getElementById('timer');
-  if (countdownDisplay) {
-    // Set countdown for 15 minutes
-    startCountdown(15 * 60, countdownDisplay);
-  }
-  
-// Apply to all elements with class 'animate'
-document.querySelectorAll('.animate').forEach((el) => observer.observe(el));
-// ========= Basic Field Validation =========
-const form = document.querySelector('form');
-if (form) {
-  form.addEventListener('submit', function (e) {
-    const name = form.querySelector('input[name="name"]');
-    const phone = form.querySelector('input[name="phone"]');
+// Wait until DOM is ready
+document.addEventListener("DOMContentLoaded", function () {
 
-    if (!name.value.trim() || !phone.value.trim()) {
+  // === Countdown Timer ===
+  function countdown() {
+    const offerDate = new Date("2026-01-31T23:59:59");
+    const now = new Date();
+    const diff = offerDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").textContent = "Offer ended!";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    const countdownElement = document.getElementById("countdown");
+    if (countdownElement) {
+      countdownElement.innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
+    }
+  }
+  setInterval(countdown, 1000);
+  countdown(); // run immediately
+
+
+  // === Smooth Scroll to Form ===
+  document.querySelectorAll('a[href="#order-form"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      alert("❌ Please fill in both your name and phone number.");
-    }
-  });
-}
-
-// ========= Form Submission Alert =========
-// Show alert when form is submitted
-document.querySelector('form')?.addEventListener('submit', (e) => {
-  // Give user quick feedback
-  setTimeout(() => {
-    alert("✅ Your order has been received. We'll contact you shortly!");
-  }, 100); // slight delay to not interrupt submission
-});
-// ========= FAQ Toggle =========
-document.querySelectorAll('.faq-question').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const answer = btn.nextElementSibling;
-      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      const formSection = document.querySelector('#order-form');
+      formSection.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
-  // === Testimonial Slider for Hypertension Cure ===
-  const testimonials = [
-    {
-      text: "“My blood pressure dropped from 160/100 to 120/80 within 3 weeks of using this product.”",
-      name: "Oluwabunmi, Port Harcourt"
-    },
-    {
-      text: "“I’ve stopped taking my regular BP meds since I started this. It’s been 5 months and I feel great!”",
-      name: "Danladi, Kaduna"
-    },
-    {
-      text: "“I didn’t think natural remedies could work this well. My doctor was surprised too.”",
-      name: "Ngozi, Owerri"
+
+  // === Sticky CTA Visibility Logic ===
+  window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    const cta = document.querySelector('#sticky-cta');
+    if (hero && cta) {
+      const scrollY = window.scrollY;
+      cta.style.display = scrollY > hero.offsetHeight ? 'block' : 'none';
     }
-  ];
+  });
 
-  let currentTestimonial = 0;
-  const testimonialSection = document.getElementById("testimonials");
 
-  function updateTestimonial() {
-    testimonialSection.innerHTML = `
-      <h2>What Others Are Saying</h2>
-      <blockquote>
-        <p>${testimonials[currentTestimonial].text}</p>
-        <cite>— ${testimonials[currentTestimonial].name}</cite>
-      </blockquote>
-    `;
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-  }
+  // === FAQ Accordion ===
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      item.classList.toggle('active');
+    });
+  });
 
-  updateTestimonial();
-  setInterval(updateTestimonial, 10000); // Change every 10s
 
-  // === Fake Order Notification (Top-Right) ===
+  // === Fake Order Notification ===
   const fakeOrders = [
-    "Femi from Lagos just ordered the hypertension combo pack!",
-    "Aisha from Kano bought 2-month supply!",
-    "Chisom from Onitsha reordered after results!",
-    "Mrs. Ade from Abuja placed her second order!",
-    "Tunde from Ibadan just paid for express delivery!"
+  "Fatima from Kano reordered this morning!",
+  "⏳ OFFER ENDING SOON Today’s deal ends shortly. Order now.",
+  "🛡️ 30-Day Satisfaction Guarantee Try HYPERCURE risk-free.",
+  "✅ Order received from Ogbomosho",
+  "Mary from Lagos just ordered two bottles!",
+  "Ahmed from Abuja placed an order!",
+  "Chinwe from Enugu bought 2 packs!",
+  "Tolu from Ibadan just ordered the complete pack!",
+  "✅ A customer in Lagos just ordered HYPERCURE",
+  "🔔 New order received from Awka",
+  "✅ Someone in Uyo purchased HYPERCURE"
   ];
 
-  const popup = document.getElementById('fake-order-popup');
-
+  const fakePopup = document.getElementById('fake-order-popup');
   function showFakeOrder() {
-    popup.textContent = fakeOrders[Math.floor(Math.random() * fakeOrders.length)];
-    popup.style.opacity = '1';
+    if (!fakePopup) return;
+    fakePopup.textContent = fakeOrders[Math.floor(Math.random() * fakeOrders.length)];
+    fakePopup.style.opacity = '1';
     setTimeout(() => {
-      popup.style.opacity = '0';
+      fakePopup.style.opacity = '0';
     }, 5000);
   }
+  setInterval(showFakeOrder, 25000); // every 25 seconds
 
-  setInterval(showFakeOrder, 25000); // Every 25 seconds
 
-  // === Fake Comment Submit ===
+  // === Fake Comment Submit Toast ===
   const sendBtn = document.getElementById('send-comment');
   const input = document.getElementById('comment-input');
   const toast = document.getElementById('comment-toast');
@@ -131,3 +99,98 @@ document.querySelectorAll('.faq-question').forEach((btn) => {
       }
     });
   }
+
+
+  // === EXIT POPUP (Mobile + Desktop Friendly) ===
+  let popupVisible = false;
+  const exitPopup = document.getElementById('exit-popup');
+  const skipPopup = document.getElementById('skip-popup');
+  const popupForm = document.getElementById('popupForm');
+
+  function showPopup() {
+    if (!popupVisible && exitPopup) {
+      popupVisible = true;
+      exitPopup.style.display = 'flex';
+    }
+  }
+
+  // === 1️⃣ Show when user presses back button ===
+  (function handleBackButton() {
+    // Push fake history entry so pressing back first triggers popup
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function () {
+      showPopup();
+      // Push state again so user must press back twice to leave
+      history.pushState(null, null, location.href);
+    });
+  })();
+
+
+  // === 2️⃣ Show when user switches away or minimizes ===
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      showPopup();
+    }
+  });
+
+  // === 3️⃣ Show after 25 seconds of inactivity AND 1 minute total ===
+  let idleTimer;
+  let totalIdleTimer;
+
+  function resetIdleTimers() {
+    clearTimeout(idleTimer);
+    clearTimeout(totalIdleTimer);
+
+    // 25 seconds of inactivity
+    idleTimer = setTimeout(() => {
+      showPopup();
+    }, 120000);
+
+    // 1 minute total inactivity (no matter what)
+    totalIdleTimer = setTimeout(() => {
+      showPopup();
+    }, 180000);
+  }
+
+  ['scroll', 'touchstart', 'mousemove', 'keydown', 'click'].forEach(evt =>
+    document.addEventListener(evt, resetIdleTimers)
+  );
+  resetIdleTimers();
+
+
+  // === Close popup ===
+  if (skipPopup) {
+    skipPopup.addEventListener('click', () => {
+      exitPopup.style.display = 'none';
+    });
+  }
+
+  // === Handle popup form submit ===
+  if (popupForm) {
+    popupForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const phone = document.getElementById('popup-phone').value.trim();
+      const phoneRegex = /^\d{11}$/;
+
+      if (!phoneRegex.test(phone)) {
+        alert("Phone number must be exactly 11 digits.");
+        return;
+      }
+
+      const response = await fetch(this.action, {
+        method: this.method,
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        alert("✅ Thank you! Your free BP PDF will be sent shortly.");
+        exitPopup.style.display = 'none';
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    });
+  }
+
+}); // END DOMContentLoaded
+
