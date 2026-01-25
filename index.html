@@ -219,42 +219,50 @@ How HYPERCURE Works Inside Your Body
 
 <img src="img/new3ultragreat.jpg"/>
 
-<!-- Order Form -->
 <section class="form" id="order-form">
-<h2>Place Your Order</h2>
-<form id="orderForm" action="https://formspree.io/f/mjkwpbko" method="POST">
+  <h2>Place Your Order</h2>
+  <form id="orderForm" action="https://formspree.io/f/mjkwpbko" method="POST">
+    
+    <label for="name">Full Name</label>
+    <input type="text" name="name" id="name" placeholder="Enter your full name" required />
 
-<label>Full Name</label>
-<input type="text" name="name" required>
+    <label for="phone">Primary Phone Number</label>
+    <input type="tel" name="phone" id="phone" placeholder="08012345678" 
+           pattern="\d{11}" minlength="11" maxlength="11" required />
 
-<label>Primary Phone Number</label>
-<input type="tel" name="phone" pattern="\d{11}" required>
+    <label for="alt-phone">Alternative Phone Number</label>
+    <input type="tel" name="alt-phone" id="alt-phone" placeholder="08012345678"
+           pattern="\d{11}" minlength="11" maxlength="11" required />
 
-<label>Alternative Phone Number</label>
-<input type="tel" name="alt-phone" pattern="\d{11}" required>
+    <label for="state">State</label>
+    <select name="state" id="state" required 
+            style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      <option value="">-- Select Your State --</option>
+    </select>
 
-<label>State</label>
-<select name="state" id="state" required></select>
+    <label for="lga">Local Government Area (LGA)</label>
+    <select name="lga" id="lga" required 
+            style="width: 100%; padding: 10px; margin-bottom: 10px;" disabled>
+      <option value="">-- Select State First --</option>
+    </select>
 
-<label>LGA</label>
-<select name="lga" id="lga" required disabled></select>
+    <label for="quantity">Select Number of Bottles</label>
+    <select name="quantity" id="quantity" required 
+            style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      <option value="">-- Choose Quantity --</option>
+      <option value="1 Bottle of Utero Clear - ₦25,000">1 Bottle - ₦25,000</option>
+      <option value="2 Bottles of Utero Clear - ₦45,000">2 Bottles - ₦45,000</option>
+      <option value="3 Bottles of Utero Clear - ₦60,000">3 Bottles - ₦60,000</option>
+    </select>
 
-<label>Select Number of Bottles</label>
-<select name="quantity" required>
-<option value="">Choose</option>
-<option>1 Bottle – ₦25,000</option>
-<option>2 Bottles – ₦40,000</option>
-<option>3 Bottles – ₦60,000</option>
-</select>
+    <label for="address">Delivery Address</label>
+    <textarea name="address" id="address" rows="3" 
+              placeholder="Enter your full delivery address" required></textarea>
 
-<label>Delivery Address</label>
-<textarea name="address" required></textarea>
-
-<button type="submit">Submit Order</button>
-</form>
+    <button type="submit">Submit Order</button>
+  </form>
 </section>
 
-<script>
 const stateToLGA = {
   "Abia": ["Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala Ngwa North", "Isiala Ngwa South", "Isuikwuato", "Obi Ngwa", "Ohafia", "Osisioma", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu Nneochi"],
   "Adamawa": ["Demsa", "Fufure", "Ganye", "Gayuk", "Gombi", "Grie", "Hong", "Jada", "Larmurde", "Madagali", "Maiha", "Mayo Belwa", "Michika", "Mubi North", "Mubi South", "Numan", "Shelleng", "Song", "Toungo", "Yola North", "Yola South"],
@@ -546,5 +554,6 @@ document.querySelectorAll("#orderForm, #popupForm").forEach(form => {
 <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
