@@ -262,7 +262,7 @@ How HYPERCURE Works Inside Your Body
     <button type="submit">Submit Order</button>
   </form>
 </section>
-
+<script>
 const stateToLGA = {
   "Abia": ["Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala Ngwa North", "Isiala Ngwa South", "Isuikwuato", "Obi Ngwa", "Ohafia", "Osisioma", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu Nneochi"],
   "Adamawa": ["Demsa", "Fufure", "Ganye", "Gayuk", "Gombi", "Grie", "Hong", "Jada", "Larmurde", "Madagali", "Maiha", "Mayo Belwa", "Michika", "Mubi North", "Mubi South", "Numan", "Shelleng", "Song", "Toungo", "Yola North", "Yola South"],
@@ -343,8 +343,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
   });
 
   if (response.ok) {
-    window.location.href = "thank.ht
-    ml";
+    window.location.href = "https://hypertensioncurecenter.xyz/thanks";
   } else {
     alert("Something went wrong. Please try again.");
   }
@@ -554,6 +553,7 @@ document.querySelectorAll("#orderForm, #popupForm").forEach(form => {
 <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 
